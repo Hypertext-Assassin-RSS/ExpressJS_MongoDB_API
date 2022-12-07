@@ -8,9 +8,22 @@ const port = 4000
 
 
 
-const url = 'mongodb://127.0.0.1/express'
+/*const url = 'mongodb://127.0.0.1/express'*/
 
-mongoose.connect(url, { useNewUrlParser: true })
+const url = `mongodb://mongo:y8nqeYlqtOawgaJnva0m@containers-us-west-131.railway.app:6522`;
+
+const connectionParams={
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}
+
+mongoose.connect(url, connectionParams)
+    .then( () => {
+    console.log('Connected to the database ')
+})
+    .catch( (err) => {
+        console.error(`Error connecting to the database ${err}`);
+    })
 const con = mongoose.connection
 
 con.on("open", () => {
